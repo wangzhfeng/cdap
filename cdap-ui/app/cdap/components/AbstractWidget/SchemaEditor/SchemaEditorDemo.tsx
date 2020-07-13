@@ -22,19 +22,8 @@ import LoadingSVGCentered from 'components/LoadingSVGCentered';
 import If from 'components/If';
 import FileDnD from 'components/FileDnD';
 import { Button } from '@material-ui/core';
-const emptySchema = {
-  name: 'etlSchemaBody',
-  schema: {
-    type: 'record',
-    name: 'etlSchemaBody',
-    fields: [
-      {
-        name: '',
-        type: 'string',
-      },
-    ],
-  },
-};
+import { getDefaultEmptyAvroSchema } from 'components/AbstractWidget/SchemaEditor/SchemaConstants';
+const emptySchema = getDefaultEmptyAvroSchema();
 
 const styles = (): StyleRules => {
   return {

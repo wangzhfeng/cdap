@@ -34,7 +34,7 @@ import { isNilOrEmpty } from 'services/helpers';
  * provide details on the place of failure. We right now surface the error
  * to the parent to show the error under a tree.
  *
- * This is separate in an effort to push this processing to a web worker in the furture.
+ * This is separate in an effort to push this processing to a web worker in the future.
  * If we are not able write our own avro schema parser we won't be able to pinpoint
  * the error to a specific row. In which we have to recurrsively parse each node
  * in the schema tree to identify specific row of issue. This kind of processing

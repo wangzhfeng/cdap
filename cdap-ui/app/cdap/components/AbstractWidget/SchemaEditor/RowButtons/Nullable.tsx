@@ -15,19 +15,9 @@
  */
 
 import * as React from 'react';
-import withStyles, { StyleRules } from '@material-ui/core/styles/withStyles';
 import CheckBox from '@material-ui/core/Checkbox';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
-const CustomCheckbox = withStyles(
-  (): StyleRules => {
-    return {
-      root: {
-        // padding: '0',
-      },
-    };
-  }
-)(CheckBox);
 
 interface INullableBaseProps {
   nullable: boolean;
@@ -36,7 +26,7 @@ interface INullableBaseProps {
 
 const NullableBase = ({ nullable, onNullable: onChange }: INullableBaseProps) => {
   return (
-    <CustomCheckbox
+    <CheckBox
       checked={nullable}
       color="primary"
       checkedIcon={<CheckBoxIcon fontSize="small" />}

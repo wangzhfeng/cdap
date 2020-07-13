@@ -234,7 +234,7 @@ class SchemaManagerBase implements ISchemaManager {
    * added field, it could be a single field or a tree in case of union or map or enum,
    * and then flatten that sub tree and insert into our flattened array.
    *
-   * @param currentIndex - Current index in the flattend array to add a new row.
+   * @param fieldId ID of the current row being updated.
    */
   private add = (fieldId: IFieldIdentifier): IOnChangeReturnType => {
     const currentIndex = this.flatTree.findIndex((f) => f.id === fieldId.id);
@@ -288,7 +288,10 @@ class SchemaManagerBase implements ISchemaManager {
     }
     const { tree: newTree, removedField, newlyAddedField } = this.removeFromTree(
       tree.children[fieldId.ancestors[1]],
-      { id: fieldId.id, ancestors: fieldId.ancestors.slice(1) }
+      {
+        id: fieldId.id,
+        ancestors: fieldId.ancestors.slice(1),
+      }
     );
     return {
       tree: {
@@ -312,7 +315,7 @@ class SchemaManagerBase implements ISchemaManager {
    * a record type. We can't have all the fields deleted. Upon the
    * deleting the final field we still need to add a new field for
    * the user to be able to keep the record type.
-   * @param currentIndex - Index of the current row to be removed.
+   * @param fieldId ID of the current row being updated.
    */
   private remove = (fieldId: IFieldIdentifier): IOnChangeReturnType => {
     const currentIndex = this.flatTree.findIndex((f) => f.id === fieldId.id);
@@ -338,7 +341,10 @@ class SchemaManagerBase implements ISchemaManager {
       ...newFlatSubTree,
       ...this.flatTree.slice(currentIndex + 1 + childrenInBranch), // remove current row along with its children.
     ];
-    return { fieldIdToFocus: this.flatTree[currentIndex - 1].id, fieldIndex: currentIndex - 1 };
+    return {
+      fieldIdToFocus: this.flatTree[currentIndex - 1].id,
+      fieldIndex: currentIndex - 1,
+    };
   };
 
   private updateTree = (
@@ -403,7 +409,7 @@ class SchemaManagerBase implements ISchemaManager {
    * Updating 'type' involves changing from a simple type to a complex type or vice-versa.
    *
    * This again involves addition or removal of nodes in the schema.
-   * @param currentIndex index of the current row to be updated.
+   * @param fieldId ID of the current row being updated.
    * @param onChangePayload - { property, value } - payload for updating.
    */
   private update = (
@@ -446,7 +452,10 @@ class SchemaManagerBase implements ISchemaManager {
     }
     // newFlatSubTree will be of length 1 for simple type changes.
     if (Array.isArray(newFlatSubTree) && newFlatSubTree.length > 1) {
-      return { fieldIdToFocus: this.flatTree[index + 1].id, fieldIndex: index + 1 };
+      return {
+        fieldIdToFocus: this.flatTree[index + 1].id,
+        fieldIndex: index + 1,
+      };
     }
     return {};
   };
@@ -530,7 +539,6 @@ class SchemaManagerBase implements ISchemaManager {
    * The generic onChange is supposed to handle all types of mutation to the schema.
    * This onChange is the handler for any changes that happen in the schema (not to be confused with
    * the onChange in the schemaEditor).
-   * @param currentIndex - Current row index the user is changing
    * @param fieldId - unique id to identify every field in the schema tree.
    * @param onChangePayload {type, property, value} - Every onchange call will have the type of
    * change, the property and the value. The type could be 'add', 'update', 'remove' and property could be
