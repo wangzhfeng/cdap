@@ -257,6 +257,10 @@
     "modulePaths": [
       "./app/cdap/"
     ],
+    "modulePathIgnorePatterns": [
+      "./app/cdap/components/AbstractWidget/SchemaEditor/Context/__tests__/schemas.js",
+      "./app/cdap/components/AbstractWidget/SchemaEditor/Context/__tests__/data"
+    ],
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
       ".scss$": "<rootDir>/__mocks__/styleMocks.js",
