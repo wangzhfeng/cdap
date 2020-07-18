@@ -17,24 +17,13 @@
 import * as React from 'react';
 import WidgetWrapper from 'components/ConfigurationGroup/WidgetWrapper';
 import Button from '@material-ui/core/Button';
-import makeStyles from '@material-ui/core/styles/makeStyles';
 import {
   defaultPrecision,
   defaultScale,
 } from 'components/AbstractWidget/SchemaEditor/SchemaConstants';
 import { IAttributesComponentProps } from 'components/AbstractWidget/SchemaEditor/EditorTypes';
 import { objectQuery } from 'services/helpers';
-
-const useStyles = makeStyles({
-  root: {
-    marginTop: '15px',
-    maxHeight: '250px',
-    overflowY: 'auto',
-    '& >div': {
-      margin: '10px 0',
-    },
-  },
-});
+import { useAttributePopoverStyles } from 'components/AbstractWidget/SchemaEditor/RowButtons/FieldAttributes/FieldAttributesPopoverButton';
 
 function DecimalTypeAttributes({
   typeProperties,
@@ -45,7 +34,7 @@ function DecimalTypeAttributes({
   const [precision, setPrecision] = React.useState(
     objectQuery(typeProperties, 'precision') || defaultPrecision
   );
-  const classes = useStyles();
+  const classes = useAttributePopoverStyles();
 
   const onChangeHandler = () => {
     onChange('typeProperties', {

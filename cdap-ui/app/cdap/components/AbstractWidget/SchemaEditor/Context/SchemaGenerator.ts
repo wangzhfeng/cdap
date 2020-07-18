@@ -134,7 +134,7 @@ function generateRecordType(children: IOrderedChildren, currentNode: INode, null
   if (Array.isArray(children.order)) {
     for (const childId of children.order) {
       const currentChild = children[childId];
-      const { name, type, nullable: isFiledNullable } = currentChild;
+      const { name, type, nullable: isFieldNullable } = currentChild;
       if (!name || name === '') {
         continue;
       }
@@ -142,7 +142,7 @@ function generateRecordType(children: IOrderedChildren, currentNode: INode, null
       if (!isFieldTypeComplex) {
         finalType.fields.push({
           name,
-          type: isFiledNullable ? [type, 'null'] : type,
+          type: isFieldNullable ? [type, 'null'] : type,
         });
       } else {
         finalType.fields.push({
@@ -212,6 +212,8 @@ function SchemaGenerator(schemaTree: INode) {
   const avroSchema: ISchemaType = getDefaultEmptyAvroSchema();
   if (!schemaTree) {
     return avroSchema;
+  } else {
+    avroSchema.schema.fields = [];
   }
   // Top level record fields.
   const { order } = schemaTree.children;

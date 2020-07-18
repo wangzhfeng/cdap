@@ -34,7 +34,7 @@ import {
   SchemaValidatorConsumer,
   SchemaValidatorProvider,
 } from 'components/AbstractWidget/SchemaEditor/SchemaValidator';
-import { dumbestClone as cloneDeep } from 'services/helpers';
+import { dumbestClone } from 'services/helpers';
 
 const styles = (): StyleRules => {
   return {
@@ -66,16 +66,16 @@ class SchemaEditorBase extends React.Component<ISchemaEditorProps, ISchemaEditor
     const { options } = props;
     this.schema = SchemaManager(this.props.schema, options).getInstance();
     this.state = {
-      flat: cloneDeep(this.schema.getFlatSchema()),
-      tree: cloneDeep(this.schema.getSchemaTree()),
+      flat: dumbestClone(this.schema.getFlatSchema()),
+      tree: dumbestClone(this.schema.getSchemaTree()),
     };
   }
 
   public componentWillReceiveProps(nextProps) {
     this.schema = SchemaManager(nextProps.schema).getInstance();
     this.setState({
-      flat: cloneDeep(this.schema.getFlatSchema()),
-      tree: cloneDeep(this.schema.getSchemaTree()),
+      flat: dumbestClone(this.schema.getFlatSchema()),
+      tree: dumbestClone(this.schema.getSchemaTree()),
     });
   }
   public onChange = (validate, fieldId: IFieldIdentifier, onChangePayload: IOnChangePayload) => {

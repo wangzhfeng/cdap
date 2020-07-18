@@ -39,7 +39,7 @@ import {
 import isEmpty from 'lodash/isEmpty';
 
 function getInternalType(tree: INode) {
-  const hasChildren = tree.children ? Object.keys(tree.children).length : 0;
+  const hasChildren = tree.children ? Object.keys(tree.children).length > 0 : false;
   if (tree.internalType === InternalTypesEnum.RECORD_SIMPLE_TYPE && hasChildren) {
     return InternalTypesEnum.RECORD_COMPLEX_TYPE_ROOT;
   }
@@ -94,9 +94,8 @@ const initChildren = (type): IOrderedChildren => {
       return parseEnumType(defaultEnumType);
     case 'map':
       return parseMapType(defaultMapType);
-    case 'record': {
+    case 'record':
       return parseComplexType(defaultRecordType);
-    }
     case 'union':
       return parseUnionType(defaultUnionType);
     default:

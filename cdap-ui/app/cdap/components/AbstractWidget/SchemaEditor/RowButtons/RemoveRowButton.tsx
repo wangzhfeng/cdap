@@ -16,20 +16,8 @@
 
 import * as React from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
-import withStyles, { StyleRules } from '@material-ui/core/styles/withStyles';
-import IconButton from '@material-ui/core/IconButton';
-
-export const IconWrapper = withStyles(
-  (): StyleRules => {
-    return {
-      root: {
-        '&:focus': {
-          outline: 'none',
-        },
-      },
-    };
-  }
-)(IconButton);
+import withStyles from '@material-ui/core/styles/withStyles';
+import { IconWrapper } from 'components/AbstractWidget/SchemaEditor/RowButtons/IconWrapper';
 const styles = (theme) => {
   return {
     root: {

@@ -16,7 +16,7 @@
 
 import * as React from 'react';
 import MoreVertical from '@material-ui/icons/MoreVert';
-import { IconWrapper } from 'components/AbstractWidget/SchemaEditor/RowButtons/RemoveRowButton';
+import { IconWrapper } from 'components/AbstractWidget/SchemaEditor/RowButtons/IconWrapper';
 import Popover from '@material-ui/core/Popover';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import { ISimpleType, IComplexTypeNames } from 'components/AbstractWidget/SchemaEditor/SchemaTypes';
@@ -34,6 +34,17 @@ interface IFieldPropertiesPopoverButtonProps {
   onChange?: IOnchangeHandler;
   typeProperties: ITypeProperties;
 }
+
+const useAttributePopoverStyles = makeStyles({
+  root: {
+    marginTop: '15px',
+    maxHeight: '250px',
+    overflowY: 'auto',
+    '& >div': {
+      margin: '10px 0',
+    },
+  },
+});
 
 const useStyles = makeStyles((theme) => ({
   popoverContainer: {
@@ -106,4 +117,4 @@ function FieldPropertiesPopoverButton({
   );
 }
 
-export { FieldPropertiesPopoverButton };
+export { FieldPropertiesPopoverButton, useAttributePopoverStyles };

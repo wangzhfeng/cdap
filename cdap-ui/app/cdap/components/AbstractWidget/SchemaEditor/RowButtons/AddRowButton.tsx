@@ -16,7 +16,7 @@
 
 import * as React from 'react';
 import AddIcon from '@material-ui/icons/Add';
-import { IconWrapper } from 'components/AbstractWidget/SchemaEditor/RowButtons/RemoveRowButton';
+import { IconWrapper } from 'components/AbstractWidget/SchemaEditor/RowButtons/IconWrapper';
 
 function AddRowButton({ onAdd }) {
   return (

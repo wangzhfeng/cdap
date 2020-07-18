@@ -14,18 +14,17 @@
  * the License.
  */
 
-import withStyles from '@material-ui/core/styles/withStyles';
-import Box from '@material-ui/core/Box';
-/**
- * Row wrapper used for unions and array type rows.
- */
-const SingleColumnWrapper = withStyles(() => {
-  return {
-    root: {
-      width: '132px',
-      marginLeft: '-12px',
-    },
-  };
-})(Box);
+import withStyles, { StyleRules } from '@material-ui/core/styles/withStyles';
+import IconButton from '@material-ui/core/IconButton';
 
-export { SingleColumnWrapper };
+export const IconWrapper = withStyles(
+  (): StyleRules => {
+    return {
+      root: {
+        '&:focus': {
+          outline: 'none',
+        },
+      },
+    };
+  }
+)(IconButton);

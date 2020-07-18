@@ -140,13 +140,13 @@ const isDisplayTypeComplex = ({ type }) => {
  * @param complexType any valid complex avro type.
  */
 const getComplexTypeName = (complexType): IComplexTypeNames => {
-  const c = cloneDeep(complexType);
+  const c = complexType;
   let type;
   if (isNullable(complexType)) {
     type = complexType.filter((t) => t !== 'null').pop();
     type = type.type;
   } else {
-    type = c.type;
+    type = cloneDeep(c.type);
   }
   switch (type) {
     case 'record':

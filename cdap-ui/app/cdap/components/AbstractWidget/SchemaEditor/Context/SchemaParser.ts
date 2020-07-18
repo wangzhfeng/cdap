@@ -278,10 +278,9 @@ function parseComplexType(type): IOrderedChildren {
     case 'array':
       record = parseArrayType(type);
       break;
-    case 'record': {
+    case 'record':
       record = parseRecordType(type);
       break;
-    }
     case 'union':
       record = parseUnionType(type);
       break;

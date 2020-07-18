@@ -100,7 +100,12 @@ const getDefaultEmptyAvroSchema = (): ISchemaType => {
     schema: {
       name: 'etlSchemaBody',
       type: 'record',
-      fields: [],
+      fields: [
+        {
+          name: '',
+          type: 'string',
+        },
+      ],
     },
   };
 };

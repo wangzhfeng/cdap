@@ -40,10 +40,8 @@ const ArrayTypeBase = ({
   };
   const inputEle = React.useRef(null);
   React.useEffect(() => {
-    if (autoFocus) {
-      if (inputEle.current) {
-        inputEle.current.focus();
-      }
+    if (autoFocus && inputEle.current) {
+      inputEle.current.focus();
     }
   }, [autoFocus]);
   const onNullable = (checked) => {
